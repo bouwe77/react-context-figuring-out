@@ -1,2 +1,3 @@
 # react-context-figuring-out
-Created with CodeSandbox
+
+What gets rerendered when using the same context? Short answer: EVERYTHING!!
