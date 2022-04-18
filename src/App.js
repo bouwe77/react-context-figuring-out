@@ -1,23 +1,13 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import * as React from "react";
 
 export default function App() {
-  useEffect(() => console.log("Render App"));
+  React.useEffect(() => console.log("Render App"));
 
-  return (
-    <>
-      <MyCounterApp />
-    </>
-  );
+  return <MyCounterApp />;
 }
 
 function MyCounterApp() {
-  useEffect(() => console.log("Render MyCounterApp"));
+  React.useEffect(() => console.log("Render MyCounterApp"));
 
   return (
     <CountProvider>
@@ -31,7 +21,7 @@ function MyCounterApp() {
 const Counter1 = () => {
   const { counter1, increaseCounter1 } = useCount();
 
-  useEffect(() => console.log("Render Counter1"));
+  React.useEffect(() => console.log("Render Counter1"));
 
   return (
     <>
@@ -52,7 +42,7 @@ const Counter1 = () => {
 const Counter2 = () => {
   const { counter2, increaseCounter2 } = useCount();
 
-  useEffect(() => console.log("Render Counter2"));
+  React.useEffect(() => console.log("Render Counter2"));
 
   return (
     <>
@@ -71,7 +61,7 @@ const Counter2 = () => {
 };
 
 const SomeComponent = () => {
-  useEffect(() => console.log("Render SomeComponent"));
+  React.useEffect(() => console.log("Render SomeComponent"));
 
   return (
     <>
@@ -91,17 +81,17 @@ const SomeComponent = () => {
   );
 };
 
-const CountContext = createContext();
+const CountContext = React.createContext();
 
 function CountProvider({ children }) {
-  const [counter1, setCounter1] = useState(0);
-  const [counter2, setCounter2] = useState(0);
+  const [counter1, setCounter1] = React.useState(0);
+  const [counter2, setCounter2] = React.useState(0);
 
-  const increaseCounter1 = useCallback(
+  const increaseCounter1 = React.useCallback(
     () => setCounter1((prev) => prev + 1),
     []
   );
-  const increaseCounter2 = useCallback(
+  const increaseCounter2 = React.useCallback(
     () => setCounter2((prev) => prev + 2),
     []
   );
@@ -114,7 +104,7 @@ function CountProvider({ children }) {
 }
 
 function useCount() {
-  const context = useContext(CountContext);
+  const context = React.useContext(CountContext);
   if (context === undefined) {
     throw new Error("useCount must be used within a CountProvider");
   }
