@@ -5,15 +5,14 @@ import {
   useEffect,
   useState
 } from "react";
-import "./styles.css";
 
 export default function App() {
   useEffect(() => console.log("Render App"));
 
   return (
-    <div className="App">
+    <>
       <MyCounterApp />
-    </div>
+    </>
   );
 }
 
@@ -23,6 +22,7 @@ function MyCounterApp() {
   return (
     <CountProvider>
       <Counter1 />
+      <hr style={{ border: "3px solid #ddd", margin: "30px 0px" }} />
       <Counter2 />
     </CountProvider>
   );
@@ -43,6 +43,8 @@ const Counter1 = () => {
       </p>
       <p>Short answer: YES :(</p>
       <button onClick={increaseCounter1}>{counter1}</button>
+
+      <SomeComponent />
     </>
   );
 };
@@ -62,6 +64,29 @@ const Counter2 = () => {
       </p>
       <p>Short answer: YES :(</p>
       <button onClick={increaseCounter2}>{counter2}</button>
+
+      <SomeComponent />
+    </>
+  );
+};
+
+const SomeComponent = () => {
+  useEffect(() => console.log("Render SomeComponent"));
+
+  return (
+    <>
+      <div
+        style={{
+          marginTop: "20px",
+          border: "1px solid #ddd",
+          width: "400px",
+          padding: "10px"
+        }}
+      >
+        This is just some other, totally unrelated, component.
+        <br />
+        It is re-rendered along with its parent.
+      </div>
     </>
   );
 };
